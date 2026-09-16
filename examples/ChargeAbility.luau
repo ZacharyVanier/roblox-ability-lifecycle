@@ -3,8 +3,8 @@
 	Copyright (c) 2026 Zachary Vanier.
 ]]
 
-local Runner = require("./Runner")
-local Types = require("./Types")
+local Runner = require("../src/Behavior/Shared/Runner")
+local Types = require("../src/Behavior/Shared/Types")
 
 local Now = 0
 local Events: { string } = {}
