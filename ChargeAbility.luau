@@ -1,11 +1,10 @@
 --[[
 	Charge Ability -- deterministic walkthrough of release, interruption, and failure.
-	Copyright (c) 2026 Zachary Vanier | MIT License.
-	Run with Lune from the repository root.
+	Copyright (c) 2026 Zachary Vanier.
 ]]
 
-local Runner = require("../src/VZNCore/Features/Behavior/Shared/Runner")
-local Types = require("../src/VZNCore/Features/Behavior/Shared/Types")
+local Runner = require("./Runner")
+local Types = require("./Types")
 
 local Now = 0
 local Events: { string } = {}

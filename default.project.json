@@ -1,7 +1,0 @@
-{
-  "name": "AbilityLifecycle",
-  "tree": {
-    "$className": "Folder",
-    "$path": "src/VZNCore/Features/Behavior/Shared"
-  }
-}

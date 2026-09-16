@@ -1,7 +1,6 @@
 --[[
 	Behavior Types -- contracts for deterministic use lifecycles.
-	VZN Framework | Copyright (c) 2026 Zachary Vanier | MIT License.
-	GitHub-managed: do not modify in Roblox Studio.
+	VZN Framework | Copyright (c) 2026 Zachary Vanier.
 ]]
 
 --» TYPE DEFINITIONS «--
