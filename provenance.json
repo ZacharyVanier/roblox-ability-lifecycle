@@ -1,0 +1,14 @@
+{
+  "source": "VZN Framework",
+  "source_commit": "d9cc0851753e4f8e4cbbdcd889a93332af396e22",
+  "author": "Zachary Vanier",
+  "license": "MIT",
+  "unchanged_files_sha256": {
+    "src/VZNCore/Features/Behavior/Shared/Runner.luau": "cdfa458ab7ed41a53ee1f08eed6f1ee89162b9fcc4864a38f6d449066820d6c5",
+    "src/VZNCore/Features/Behavior/Shared/Types.luau": "acbb09aca443b2f66ddbc17dd522ab6e1a5e434b43cf063583bc604c20e46871",
+    "tests/Features/Behavior/Runner.spec.luau": "bf060def788a2f3ab7050b9eeb434598bd40cf77521b865d435d0fbf8875f0f5",
+    "tests/TestHarness.luau": "731c66f4c6edcddaf15b7e1d83224511caf86acef5c061f0560304c82d76890c",
+    "LICENSE": "37c178a4aa2dbd7ca556c98bcc6a2216ea67b93a0f44ccfa18cacafc438c2009",
+    "stylua.toml": "c34c452d16bcbc2ff9f04d022e83dedd52cc923ac18a6e2b8e384c1d677d6a5d"
+  }
+}

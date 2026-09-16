@@ -1,0 +1,4 @@
+std = "roblox"
+
+[config]
+multiple_statements = { one_line_if = "allow" }
