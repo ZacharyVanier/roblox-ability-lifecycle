@@ -1,10 +1,4 @@
-# Ability lifecycle sample
-
-## Purpose and selection
-
-This sample isolates the VZN Framework behavior runner, the lifecycle primitive beneath gameplay abilities. It was selected for code review because a reader can follow the whole feature in two runtime modules, run its tests independently, and examine meaningful cleanup and failure paths.
-
-The larger ECS engine demonstrates storage and scheduling but requires substantially more context. Session scopes demonstrate resource ownership but involve player/character adapters. This runner combines gameplay relevance with a smaller dependency boundary.
+# Ability lifecycle
 
 ## Design
 
@@ -19,9 +13,9 @@ stateDiagram-v2
     Ended --> [*]: execution removed before callbacks; OnEnded attempted
 ```
 
-The map entry is actually removed before terminal callbacks run. This prevents a callback that cancels the same use from running its terminal callbacks twice. `Destroy` snapshots pending work and verifies each entry is still current, because an earlier cancellation callback may already have removed another use.
+The map entry is removed before terminal callbacks run. This prevents a callback that cancels the same use from running its terminal callbacks twice. `Destroy` snapshots pending work and verifies each entry is still current, because an earlier cancellation callback may already have removed another use.
 
-The runner owns execution records. A behavior owns the resources it acquires and should release them in `OnEnded`, including partially acquired resources when startup fails. The sample models such a resource with `ActiveEffects`; it intentionally has no art or renderer dependency.
+The runner owns execution records. A behavior owns the resources it acquires and should release them in `OnEnded`, including partially acquired resources when startup fails. The example tracks this ownership with `ActiveEffects`.
 
 Clock injection makes elapsed-time tests deterministic. Transport injection allows a game to select its replication mechanism and recipients without coupling lifecycle logic to a particular networking library.
 
@@ -37,12 +31,8 @@ Clock injection makes elapsed-time tests deterministic. Transport injection allo
 - Destruction tries to finish all still-active executions, is idempotent, and rejects future `Begin`. It discards individual transition errors; integrations needing teardown telemetry should report within their owned callbacks.
 - No ordering is promised between different executions during destruction.
 
-## Verification and current state
+## Tests
 
-The runtime source, original five-case specification, test harness, license, and formatting configuration are unchanged from the recorded framework snapshot. The package adds only an executable example and distribution/documentation configuration.
+The specification covers lifecycle ordering, duplicate Begin/Hold, captured replication identity, cleanup, recursive terminal cancellation, and cancellation of other uses during destruction. The example also checks interruption, startup callback failure, resource release, and rejection after destruction.
 
-The original specification covers lifecycle ordering, duplicate Begin/Hold, captured replication identity, cleanup, recursive terminal cancellation, and cancellation of other uses during destruction. The example adds executable assertions for ordinary interruption, startup callback failure, resource release, and rejection after destruction.
-
-The delivery checks run the original specification, the example, Selene, StyLua, a Rojo model build, and archive/source hash comparisons. These establish portable behavior and packaging integrity. They do not establish live multiplayer, latency, Roblox permission, or authored-asset behavior. This sample does not include or modify a live game or published place.
-
-Update this file and the source provenance record if the sample changes. The initial extraction intentionally remains byte-identical to its source so reviewers can distinguish an existing feature from sample-specific scaffolding.
+CI runs both programs, Selene, StyLua, and a Rojo model build. These checks exercise the portable runner; multiplayer, latency, and Roblox-specific integration require tests in the consuming game.
