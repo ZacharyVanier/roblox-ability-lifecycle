@@ -1,0 +1,31 @@
+name: Lint & Format
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "**.luau"
+      - "**.lua"
+  pull_request:
+    paths:
+      - "**.luau"
+      - "**.lua"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Selene
+        run: |
+          curl -L -o selene.zip https://github.com/Kampfkarren/selene/releases/download/0.30.0/selene-0.30.0-linux.zip
+          unzip selene.zip
+          chmod +x selene
+          sudo mv selene /usr/local/bin/
+
+      - name: Generate Roblox std
+        run: selene generate-roblox-std
+
+      - name: Run Selene
+        run: selene --allow-warnings src/

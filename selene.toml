@@ -1,0 +1,21 @@
+std = "roblox"
+exclude = [
+    "**/TopBarPlus/**",
+    "**/SmartBones/**",
+    "**/Iris/**",
+    "**/Packages/**",
+    "**/GoodSignal*",
+    "**/Janitor*",
+    "**/Promise*",
+    "**/ProfileService*",
+    "**/ProfileStore*",
+    "**/TestEZ/**",
+    "**/Roact/**",
+    "**/Rodux/**",
+    "**/Knit/**",
+]
+
+[rules]
+multiple_statements = "allow"
+incorrect_standard_library_use = "allow"
+if_same_then_else = "warn"
